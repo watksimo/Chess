@@ -1,0 +1,1 @@
+{"ts":1375677980129,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"\npublic class Practice_Execution {\n\n\t/**\n\t * This is just to start the game how it would be in the arcade, do not \n\t * edit\n\t */\n\tpublic static void main(String[] args) {\n\t\tGame game = new Game();\n\t}\n\n}\n"]],"start1":0,"start2":0,"length1":0,"length2":203}]],"length":203}
