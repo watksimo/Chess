@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Rook implements Piece {
-
+	public static List<int[]> moves = new ArrayList<int[]>();
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,20 +53,20 @@ public class Rook implements Piece {
 	}
 
 	@Override
-	public void moveTo(int[] position) {
-		// TODO Auto-generated method stub
+	public void moveTo(int[] newPosition, int [] currentPos){
+		
 		
 	}
 
 	@Override
 	public void deActivate() {
-		// TODO Auto-generated method stub
+		active = false;
 		
 	}
 
 	@Override
 	public void reActivate() {
-		// TODO Auto-generated method stub
+		active = true;
 		
 	}
 	
@@ -91,26 +91,57 @@ public class Rook implements Piece {
 
 	@Override
 	public boolean getFirstMove(Piece piece) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.firstMove;	
 	}
 
 	@Override
 	public boolean getActiveState(Piece piece) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.active;
 	}
 
 	@Override
 	public int getPreference(Piece piece) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.preference;
 	}
 
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
-		// TODO Auto-generated method stub
-		return null;
+		int x = currentPos[0];// current row position
+		int y = currentPos[1];// current column position
+		
+			int [] castle = {x, y+2};
+			
+			moves.add(castle);
+			
+		
+		
+		if (!firstMove){
+				moves.remove(castle);
+		}
+		return moves;
 	}
-
+	public void removeMoves(int[] a, int[] b, int[] c, int[] d) {
+		if (a == null) {
+		}
+		else {
+			moves.remove(a);
+		}
+		if (b == null) {
+		}
+		else {
+			moves.remove(b);
+		}
+		if (c == null) {
+		}
+		else {
+			moves.remove(c);
+		}
+		if (d == null) {
+		}
+		else {
+			moves.remove(d);
+		}
+	}
 }
+
+

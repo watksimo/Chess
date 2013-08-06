@@ -56,6 +56,8 @@ public class Board {
 		row.add(6, whitePawn7);
 		row.add(7, whitePawn8);
 		
+	
+		
 		
 		//Initialise black pieces
 		Pawn blackPawn1 = new Pawn(true);
@@ -227,11 +229,10 @@ public class Board {
 	}
 	
 	private void movePiece(Piece piece, int[] newPosition) {
-		
-		piece.moveTo(newPosition);
+		piece.moveTo(newPosition, findPiece(piece));
 	}
 	
-	private int[] findPiece(Piece piece) {
+	public int[] findPiece(Piece piece) {
 		for(int i=0; i<8; i++) {
 			FixedSizeList row = Board_State.get(i);
 			for(int j=0; j<8; j++) {

@@ -17,7 +17,7 @@ public interface Piece {
 	 * @param position
 	 * 				The position to which the piece will be moved
 	 */
-	public void moveTo(int[] position);
+	public void moveTo(int[] newPosition, int [] currentPos);
 	
 	/**
 	 * Remove the piece from gameplay and send to the graveyard
@@ -72,5 +72,7 @@ public interface Piece {
 	 * 		The integer value of the pieces preference
 	 */
 	public int getPreference(Piece piece);
+
+	
 	
 }

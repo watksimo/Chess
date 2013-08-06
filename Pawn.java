@@ -50,7 +50,7 @@ public class Pawn implements Piece {
 	}
 
 	@Override
-	public void moveTo(int[] position) {
+	public void moveTo(int[] newPosition, int [] currentPos){
 		
 		
 	}

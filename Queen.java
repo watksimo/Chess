@@ -53,8 +53,8 @@ public class Queen implements Piece {
 	}
 
 	@Override
-	public void moveTo(int[] position) {
-		// TODO Auto-generated method stub
+	public void moveTo(int[] newPosition, int [] currentPos){
+		
 		
 	}
 
