@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Rook implements Piece {
 	public static List<int[]> moves = new ArrayList<int[]>();
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -39,7 +39,7 @@ public class Rook implements Piece {
 	boolean firstMove;
 	boolean active;
 	int preference;
-	
+
 	/**
 	 * Initialises the piece
 	 * 
@@ -51,36 +51,37 @@ public class Rook implements Piece {
 		this.active = true;
 		this.preference = 3;
 	}
-
+	
+	
 	@Override
-	public void moveTo(int[] newPosition, int [] currentPos){
-		
-		
+	public void moveTo(int[] newPosition, int[] currentPos) {
+			currentPos = newPosition;
+			firstMove = false;
 	}
 
 	@Override
 	public void deActivate() {
 		active = false;
-		
+
 	}
 
 	@Override
 	public void reActivate() {
 		active = true;
-		
+
 	}
-	
+
 	public String toString() {
 		String toString = "";
-		
-		if(!team) {
-			toString+="white ";
+
+		if (!team) {
+			toString += "white ";
 		} else {
-			toString+="black ";
+			toString += "black ";
 		}
-		
-		toString+="Rook";
-		
+
+		toString += "Rook";
+
 		return toString;
 	}
 
@@ -91,7 +92,7 @@ public class Rook implements Piece {
 
 	@Override
 	public boolean getFirstMove(Piece piece) {
-		return this.firstMove;	
+		return this.firstMove;
 	}
 
 	@Override
@@ -108,40 +109,83 @@ public class Rook implements Piece {
 	public List<int[]> possibleMoves(int[] currentPos) {
 		int x = currentPos[0];// current row position
 		int y = currentPos[1];// current column position
+
+		// int [] castle = {x, y+2};
 		
-			int [] castle = {x, y+2};
-			
-			moves.add(castle);
-			
-		
-		
-		if (!firstMove){
-				moves.remove(castle);
+		// moves.add(castle);
+		for (int i = 1; i <= 7; i++) {
+
+			int[] a = { x + i, y };// move up i spaces
+			int[] b = { x - i, y };// move down i spaces
+			int[] c = { x, y + i };// move right
+			int[] d = { x, y - i };// move left
+			moves.add(a);
+			moves.add(b);
+			moves.add(c);
+			moves.add(d);
+			if ((x + i) > 7) {
+				// don't add this move
+				moves.remove(a);
+
+			}
+
+			if ((x - i) < 0) {
+				// break;
+				moves.remove(b);
+
+			}
+
+			if ((y + i) > 7) {
+				// break;
+				moves.remove(c);
+			}
+
+			if ((y - i) < 0) {
+				// break;
+				moves.remove(d);
+			}
+
+			if (x == 0) {
+				removeMoves(null, b, null, null);
+			}
+			if (y == 0) {
+				removeMoves(null, null, null, d);
+
+			}
+			if (y == 7) {
+				removeMoves(null, null, c, null);
+			}
+			if (x == 7) {
+				removeMoves(a, null, null, null);
+			}
+
 		}
+
+		// if (!firstMove){
+		// moves.remove(castle);
+		// }
+
 		return moves;
 	}
+
 	public void removeMoves(int[] a, int[] b, int[] c, int[] d) {
 		if (a == null) {
-		}
-		else {
+		} else {
 			moves.remove(a);
 		}
 		if (b == null) {
-		}
-		else {
+		} else {
 			moves.remove(b);
 		}
 		if (c == null) {
-		}
-		else {
+		} else {
 			moves.remove(c);
 		}
 		if (d == null) {
-		}
-		else {
+		} else {
 			moves.remove(d);
 		}
 	}
+
+	
 }
-
-
