@@ -48,6 +48,8 @@ public class Board {
 	public Board() {
 		
 		Board_State = new FixedSizeList<FixedSizeList<Piece>>();
+		blackGraveyard = new ArrayList<Piece>();
+		whiteGraveyard = new ArrayList<Piece>();
 		
 		for(int a=0; a<8; a++) {
 			Board_State.add(a, new FixedSizeList<Piece>());
@@ -276,7 +278,7 @@ public class Board {
 		}
 		
 		if(!allowed) {
-			System.out.println("not allowable move");
+			System.err.println("not allowable move");
 			return;
 		}
 		
@@ -284,7 +286,6 @@ public class Board {
 		deactivate the piece, add it to the graveyard and move new piece to 
 		that square*/
 		if(occupiedSpace(newPosition)) {
-			System.out.println("occupied: " + occupiedSpace(newPosition));
 			//Remove enemy piece on the newPosition
 			Piece onSquare = Board_State.get(x).get(y);
 			onSquare.deActivate();
@@ -294,9 +295,9 @@ public class Board {
 			} else {
 				whiteGraveyard.add(onSquare);
 			}
+			Board_State.get(oldPos[0]).add(oldPos[1], new Null());
 			Board_State.get(x).add(y, piece);
 		} else {
-			System.out.println("moved to empty space");
 			Board_State.get(oldPos[0]).add(oldPos[1], new Null());
 			Board_State.get(x).add(y, piece);
 		}
