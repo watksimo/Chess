@@ -85,24 +85,24 @@ public class Queen implements Piece {
 	}
 
 	@Override
-	public boolean getTeam(Piece piece) {
+	public boolean getTeam() {
 		return this.team;
 	}
 
 	@Override
-	public boolean getFirstMove(Piece piece) {
+	public boolean getFirstMove() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean getActiveState(Piece piece) {
+	public boolean getActiveState() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int getPreference(Piece piece) {
+	public int getPreference() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -39,7 +39,7 @@ public interface Piece {
 	 * @return
 	 * 		False if on the white team, true if on the black team
 	 */
-	public boolean getTeam(Piece piece);
+	public boolean getTeam();
 	
 	/**
 	 * Takes in a piece and returns a boolean based on whether it's taken it's
@@ -50,7 +50,7 @@ public interface Piece {
 	 * @return
 	 * 		True if piece has moved, false otherwise
 	 */
-	public boolean getFirstMove(Piece piece);
+	public boolean getFirstMove();
 	
 	/**
 	 * Takes in a piece and returns a boolean based on whether the piece is 
@@ -59,9 +59,9 @@ public interface Piece {
 	 * @param piece
 	 * 		The instance of the piece to check
 	 * @return
-	 * 		True if the piec eis still in play, false otherwise
+	 * 		True if the piece is still in play, false otherwise
 	 */
-	public boolean getActiveState(Piece piece);
+	public boolean getActiveState();
 	
 	/**
 	 * Takes in a piece and returns it's numerical preference
@@ -71,7 +71,7 @@ public interface Piece {
 	 * @return
 	 * 		The integer value of the pieces preference
 	 */
-	public int getPreference(Piece piece);
+	public int getPreference();
 
 	
 	

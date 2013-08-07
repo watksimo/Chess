@@ -11,6 +11,18 @@ public class Game {
 	 */
 	public Game() {
 		Board board = new Board();
+		
+		int[] goodPos = {2, 0};
+		int[] badPos = {5, 3};
+		
+		System.out.println("Original Position: " + board.findPiece(board.whiteKnight1)[0] + ", " + board.findPiece(board.whiteKnight1)[1]);
+		board.movePiece(board.whiteKnight1, goodPos);
+		
+		System.out.println("New Position: " + board.findPiece(board.whiteKnight1)[0] + ", " + board.findPiece(board.whiteKnight1)[1]);
+		
+		System.out.println(board.Board_State);
+		
+		board.movePiece(board.whiteKnight1, badPos);
 	}
 	
 	/**

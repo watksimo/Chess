@@ -87,22 +87,22 @@ public class King implements Piece {
 	}
 
 	@Override
-	public boolean getTeam(Piece piece) {
+	public boolean getTeam() {
 		return this.team;
 	}
 
 	@Override
-	public boolean getFirstMove(Piece piece) {
+	public boolean getFirstMove() {
 		return this.firstMove;	
 	}
 
 	@Override
-	public boolean getActiveState(Piece piece) {
+	public boolean getActiveState() {
 		return this.active;
 	}
 
 	@Override
-	public int getPreference(Piece piece) {
+	public int getPreference() {
 		return this.preference;
 	}
 

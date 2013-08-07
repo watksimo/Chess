@@ -3,7 +3,44 @@ import java.util.*;
 public class Board {
 
 	FixedSizeList<FixedSizeList<Piece>> Board_State;
-	ArrayList<ArrayList<Piece>> Graveyard;
+	ArrayList<Piece> whiteGraveyard;
+	ArrayList<Piece> blackGraveyard;
+	
+	//Initialise pieces
+	Pawn whitePawn1;
+	Pawn whitePawn2;
+	Pawn whitePawn3;
+	Pawn whitePawn4;
+	Pawn whitePawn5;
+	Pawn whitePawn6;
+	Pawn whitePawn7;
+	Pawn whitePawn8;
+	Rook whiteRook1;
+	Knight whiteKnight1;
+	Bishop whiteBishop1;
+	King whiteKing;
+	Queen whiteQueen;
+	Bishop whiteBishop2;
+	Knight whiteKnight2;
+	Rook whiteRook2;
+	
+	Pawn blackPawn1;
+	Pawn blackPawn2;
+	Pawn blackPawn3;
+	Pawn blackPawn4;
+	Pawn blackPawn5;
+	Pawn blackPawn6;
+	Pawn blackPawn7;
+	Pawn blackPawn8;
+	Rook blackRook1;
+	Knight blackKnight1;
+	Bishop blackBishop1;
+	King blackKing;
+	Queen blackQueen;
+	Bishop blackBishop2;
+	Knight blackKnight2;
+	Rook blackRook2;
+	
 	
 	/**
 	 * Initialises board to the default setup.
@@ -17,22 +54,22 @@ public class Board {
 		}
 		
 		//Initialise white pieces
-		Pawn whitePawn1 = new Pawn(false);
-		Pawn whitePawn2 = new Pawn(false);
-		Pawn whitePawn3 = new Pawn(false);
-		Pawn whitePawn4 = new Pawn(false);
-		Pawn whitePawn5 = new Pawn(false);
-		Pawn whitePawn6 = new Pawn(false);
-		Pawn whitePawn7 = new Pawn(false);
-		Pawn whitePawn8 = new Pawn(false);
-		Rook whiteRook1 = new Rook(false);
-		Knight whiteKnight1 = new Knight(false);
-		Bishop whiteBishop1 = new Bishop(false);
-		King whiteKing = new King(false);
-		Queen whiteQueen = new Queen(false);
-		Bishop whiteBishop2 = new Bishop(false);
-		Knight whiteKnight2 = new Knight(false);
-		Rook whiteRook2 = new Rook(false);
+		whitePawn1 = new Pawn(false, 1);
+		whitePawn2 = new Pawn(false, 2);
+		whitePawn3 = new Pawn(false, 3);
+		whitePawn4 = new Pawn(false, 4);
+		whitePawn5 = new Pawn(false, 5);
+		whitePawn6 = new Pawn(false, 6);
+		whitePawn7 = new Pawn(false, 7);
+		whitePawn8 = new Pawn(false, 8);
+		whiteRook1 = new Rook(false, 1);
+		whiteKnight1 = new Knight(false, 1);
+		whiteBishop1 = new Bishop(false, 1);
+		whiteKing = new King(false);
+		whiteQueen = new Queen(false);
+		whiteBishop2 = new Bishop(false, 2);
+		whiteKnight2 = new Knight(false, 2);
+		whiteRook2 = new Rook(false, 2);
 		
 		//Add white pieces to row 1
 		FixedSizeList<Piece> row = Board_State.get(0);
@@ -57,25 +94,23 @@ public class Board {
 		row.add(7, whitePawn8);
 		
 	
-		
-		
 		//Initialise black pieces
-		Pawn blackPawn1 = new Pawn(true);
-		Pawn blackPawn2 = new Pawn(true);
-		Pawn blackPawn3 = new Pawn(true);
-		Pawn blackPawn4 = new Pawn(true);
-		Pawn blackPawn5 = new Pawn(true);
-		Pawn blackPawn6 = new Pawn(true);
-		Pawn blackPawn7 = new Pawn(true);
-		Pawn blackPawn8 = new Pawn(true);
-		Rook blackRook1 = new Rook(true);
-		Knight blackKnight1 = new Knight(true);
-		Bishop blackBishop1 = new Bishop(true);
-		King blackKing = new King(true);
-		Queen blackQueen = new Queen(true);
-		Bishop blackBishop2 = new Bishop(true);
-		Knight blackKnight2 = new Knight(true);
-		Rook blackRook2 = new Rook(true);
+		blackPawn1 = new Pawn(true, 1);
+		blackPawn2 = new Pawn(true, 2);
+		blackPawn3 = new Pawn(true, 3);
+		blackPawn4 = new Pawn(true, 4);
+		blackPawn5 = new Pawn(true, 5);
+		blackPawn6 = new Pawn(true, 6);
+		blackPawn7 = new Pawn(true, 7);
+		blackPawn8 = new Pawn(true, 8);
+		blackRook1 = new Rook(true, 1);
+		blackKnight1 = new Knight(true, 1);
+		blackBishop1 = new Bishop(true, 1);
+		blackKing = new King(true);
+		blackQueen = new Queen(true);
+		blackBishop2 = new Bishop(true, 2);
+		blackKnight2 = new Knight(true, 2);
+		blackRook2 = new Rook(true, 2);
 				
 		//Add black pieces to row 1
 		row = Board_State.get(7);
@@ -109,12 +144,6 @@ public class Board {
 			}
 		}
 		System.out.println(Board_State);
-		
-		int[] a = {1,0};
-		int[] b = {4,4};
-		
-		System.out.println(occupiedSpace(a));
-		System.out.println(occupiedSpace(b));
 		
 	}
 	
@@ -208,19 +237,22 @@ public class Board {
 		
 	}
 	
-	private List<int[]> allowedMoves(Piece piece) {
+	public List<int[]> allowedMoves(Piece piece) {
 		List<int[]> possibleMoves = piece.possibleMoves(findPiece(piece));
 		List<int[]> allowableMoves = new ArrayList<int[]>();
 		
 		for(int i=0; i<possibleMoves.size(); i++) {
+			//If the space is unoccupied add to list of allowable 
 			if(!occupiedSpace(possibleMoves.get(i))) {
 				allowableMoves.add(possibleMoves.get(i));
 			} else {
+				//If the space is occupied check by which team
 				int x = possibleMoves.get(i)[0];
 				int y = possibleMoves.get(i)[1];
 				List<Piece> row = Board_State.get(x);
 				Piece onSquare = row.get(y);
-				if(piece.getTeam(piece) != onSquare.getTeam(onSquare)) {
+				//If piece on the space is on opposing team add to allowable
+				if(piece.getTeam() != onSquare.getTeam()) {
 					allowableMoves.add(possibleMoves.get(i));
 				}
 			}
@@ -228,22 +260,61 @@ public class Board {
 		return allowableMoves;
 	}
 	
-	private void movePiece(Piece piece, int[] newPosition) {
-		piece.moveTo(newPosition, findPiece(piece));
+	public void movePiece(Piece piece, int[] newPosition) {
+		int[] oldPos = findPiece(piece);
+		piece.moveTo(newPosition, oldPos);
+		int x = newPosition[0];
+		int y = newPosition[1];
+		
+		List<int[]> allowedMoves = allowedMoves(piece);
+		
+		boolean allowed = false;
+		for(int i=0; i<allowedMoves.size(); i++) {
+			if(newPosition[0] == allowedMoves.get(i)[0] && newPosition[1] == allowedMoves.get(i)[1]) {
+				allowed = true;
+			}
+		}
+		
+		if(!allowed) {
+			System.out.println("not allowable move");
+			return;
+		}
+		
+		/*If space is occupied (can only be by other team due to possibleMoves)
+		deactivate the piece, add it to the graveyard and move new piece to 
+		that square*/
+		if(occupiedSpace(newPosition)) {
+			System.out.println("occupied: " + occupiedSpace(newPosition));
+			//Remove enemy piece on the newPosition
+			Piece onSquare = Board_State.get(x).get(y);
+			onSquare.deActivate();
+			
+			if(onSquare.getTeam()) {
+				blackGraveyard.add(onSquare);
+			} else {
+				whiteGraveyard.add(onSquare);
+			}
+			Board_State.get(x).add(y, piece);
+		} else {
+			System.out.println("moved to empty space");
+			Board_State.get(oldPos[0]).add(oldPos[1], new Null());
+			Board_State.get(x).add(y, piece);
+		}
 	}
 	
 	public int[] findPiece(Piece piece) {
 		for(int i=0; i<8; i++) {
-			FixedSizeList row = Board_State.get(i);
+			FixedSizeList<Piece> row = Board_State.get(i);
 			for(int j=0; j<8; j++) {
 				if(row.get(j).equals(piece)) {
-					int[] pos = {i+1, j+1};
+					int[] pos = {i, j};
 					return pos;
 				}
 			}
 		}
 		return null;
 	}
+	
 	
 	public String toString() {
 		String toString = "";

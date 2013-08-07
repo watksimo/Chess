@@ -4,52 +4,23 @@ import java.util.List;
 public class Rook implements Piece {
 	public static List<int[]> moves = new ArrayList<int[]>();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + (firstMove ? 1231 : 1237);
-		result = prime * result + preference;
-		result = prime * result + (team ? 1231 : 1237);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rook other = (Rook) obj;
-		if (active != other.active)
-			return false;
-		if (firstMove != other.firstMove)
-			return false;
-		if (preference != other.preference)
-			return false;
-		if (team != other.team)
-			return false;
-		return true;
-	}
-
 	boolean team;
 	boolean firstMove;
 	boolean active;
 	int preference;
+	int pieceNo;
 
 	/**
 	 * Initialises the piece
 	 * 
 	 * @param team
 	 */
-	public Rook(boolean team) {
+	public Rook(boolean team, int pieceNo) {
 		this.team = team;
 		this.firstMove = false;
 		this.active = true;
 		this.preference = 3;
+		this.pieceNo = pieceNo;
 	}
 	
 	
@@ -86,22 +57,22 @@ public class Rook implements Piece {
 	}
 
 	@Override
-	public boolean getTeam(Piece piece) {
+	public boolean getTeam() {
 		return this.team;
 	}
 
 	@Override
-	public boolean getFirstMove(Piece piece) {
+	public boolean getFirstMove() {
 		return this.firstMove;
 	}
 
 	@Override
-	public boolean getActiveState(Piece piece) {
+	public boolean getActiveState() {
 		return this.active;
 	}
 
 	@Override
-	public int getPreference(Piece piece) {
+	public int getPreference() {
 		return this.preference;
 	}
 
@@ -187,5 +158,42 @@ public class Rook implements Piece {
 		}
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
+		result = prime * result + (firstMove ? 1231 : 1237);
+		result = prime * result + pieceNo;
+		result = prime * result + preference;
+		result = prime * result + (team ? 1231 : 1237);
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rook other = (Rook) obj;
+		if (active != other.active)
+			return false;
+		if (firstMove != other.firstMove)
+			return false;
+		if (pieceNo != other.pieceNo)
+			return false;
+		if (preference != other.preference)
+			return false;
+		if (team != other.team)
+			return false;
+		return true;
+	}
+
+	
 	
 }
