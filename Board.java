@@ -146,7 +146,20 @@ public class Board {
 			}
 		}
 		System.out.println(Board_State);
+		int[] goodMove1 = {3,1};
+		movePiece(whitePawn2, goodMove1);
+		int[] goodMove2 = {4,1};
+		movePiece(whitePawn2, goodMove2);
+		int[] goodMove3 = {5,1};
+		movePiece(whitePawn2, goodMove3);
+		int[] goodMove4 = {6,2};
+		movePiece(whitePawn2, goodMove4);
+		int[] goodMove5 = {7,3};
+		movePiece(whitePawn2, goodMove5);
 		
+		System.out.println(Board_State);
+		System.out.println(blackGraveyard);
+		System.out.println(checkForCheck(true));
 	}
 	
 	/**
@@ -170,9 +183,39 @@ public class Board {
 	 * 		True if the team is in 'Check', false otherwise.
 	 */
 	private boolean checkForCheck(boolean Team) {
+		List<Piece> activePieces = findActivePieces();
+		List<Piece> activeEnemyPieces = new ArrayList<Piece>();
+		List<int[]> enemyMoves = new ArrayList<int[]>();
+		
+		int[] kingPos;
+		kingPos = (Team ? (findPiece(blackKing)) : (findPiece(whiteKing)));
 		
 		
-		return true; //Change when implemented
+		for(int i=0; i<activePieces.size(); i++) {
+			if(activePieces.get(i).getTeam() != Team) {
+				activeEnemyPieces.add(activePieces.get(i));
+			}
+		}
+		
+		for(int i=0; i<activeEnemyPieces.size(); i++) {
+			List<int[]> pieceMoves = allowedMoves(activeEnemyPieces.get(i));
+			for(int j=0; j<pieceMoves.size(); j++) {
+				if(!enemyMoves.contains(pieceMoves.get(j))) {
+					enemyMoves.add(pieceMoves.get(j));
+				}
+			}
+		}
+		try {
+			for(int i=0; i<enemyMoves.size(); i++) {
+				if((enemyMoves.get(i)[0] == kingPos[0]) && (enemyMoves.get(i)[1] == kingPos[1])) {
+					return true;
+				}
+			}
+			return false;
+		} catch(NullPointerException e) {
+			System.err.println("King has been taken");
+			return false;
+		}
 	}
 	
 	/**
@@ -240,22 +283,53 @@ public class Board {
 	}
 	
 	public List<int[]> allowedMoves(Piece piece) {
-		List<int[]> possibleMoves = piece.possibleMoves(findPiece(piece));
+		int[] currentPos = findPiece(piece);
+		List<int[]> possibleMoves = piece.possibleMoves(currentPos);
 		List<int[]> allowableMoves = new ArrayList<int[]>();
 		
-		for(int i=0; i<possibleMoves.size(); i++) {
-			//If the space is unoccupied add to list of allowable 
-			if(!occupiedSpace(possibleMoves.get(i))) {
-				allowableMoves.add(possibleMoves.get(i));
-			} else {
-				//If the space is occupied check by which team
-				int x = possibleMoves.get(i)[0];
-				int y = possibleMoves.get(i)[1];
-				List<Piece> row = Board_State.get(x);
-				Piece onSquare = row.get(y);
-				//If piece on the space is on opposing team add to allowable
-				if(piece.getTeam() != onSquare.getTeam()) {
+		/*
+		 * Checks if possibleMoves spaces are occupied, if occupied by own team
+		 * don't allow, if occupied by other team allow.
+		 */
+		//Used by: knight
+		if(piece.getClass() == blackKnight1.getClass()) {
+			for(int i=0; i<possibleMoves.size(); i++) {
+				//If the space is unoccupied add to list of allowable 
+				if(!occupiedSpace(possibleMoves.get(i))) {
 					allowableMoves.add(possibleMoves.get(i));
+				} else {
+					//If the space is occupied check by which team
+					int x = possibleMoves.get(i)[0];
+					int y = possibleMoves.get(i)[1];
+					List<Piece> row = Board_State.get(x);
+					Piece onSquare = row.get(y);
+					//If piece on the space is on opposing team add to allowable
+					if(piece.getTeam() != onSquare.getTeam()) {
+						allowableMoves.add(possibleMoves.get(i));
+					}
+				}
+			}
+		}
+		
+		//Specifically for pawn
+		if(piece.getClass() == blackPawn1.getClass()) {
+			for(int i=0; i<possibleMoves.size(); i++) {
+				if(occupiedSpace(possibleMoves.get(i))) {
+					//If the space is occupied check by which team
+					int x = possibleMoves.get(i)[0];
+					int y = possibleMoves.get(i)[1];
+					List<Piece> row = Board_State.get(x);
+					Piece onSquare = row.get(y);
+					/*If piece on the space is on opposing team add to allowable
+					  if diagonal*/
+					if((piece.getTeam() != onSquare.getTeam()) && 
+							(possibleMoves.get(i)[1] != currentPos[1])) {
+						allowableMoves.add(possibleMoves.get(i));
+					}
+				} else {  //If diagonal squares are empty don't add
+					if(possibleMoves.get(i)[1] == currentPos[1]) {
+						allowableMoves.add(possibleMoves.get(i));
+					}
 				}
 			}
 		}
@@ -264,7 +338,6 @@ public class Board {
 	
 	public void movePiece(Piece piece, int[] newPosition) {
 		int[] oldPos = findPiece(piece);
-		piece.moveTo(newPosition, oldPos);
 		int x = newPosition[0];
 		int y = newPosition[1];
 		
@@ -314,6 +387,23 @@ public class Board {
 			}
 		}
 		return null;
+	}
+	
+	public List<Piece> findActivePieces() {
+		List<Piece> activePieces = new ArrayList<Piece>();
+		Null nullPiece = new Null();
+		
+		for(int i=0; i<8; i++) {
+			FixedSizeList<Piece> row = Board_State.get(i);
+			for(int j=0; j<8; j++) {
+				Piece onSquare = row.get(j);
+				if((onSquare.getClass() != nullPiece.getClass()) && 
+						onSquare.getActiveState()) {
+					activePieces.add(onSquare);
+				}
+			}
+		}
+		return activePieces;
 	}
 	
 	

@@ -11,15 +11,6 @@ public interface Piece {
 	public List<int[]> possibleMoves(int[] currentPos);
 	
 	/**
-	 * Moves the piece to the new position. If an opposing piece is in the
-	 * given position, it will deactivate that piece.
-	 * 
-	 * @param position
-	 * 				The position to which the piece will be moved
-	 */
-	public void moveTo(int[] newPosition, int [] currentPos);
-	
-	/**
 	 * Remove the piece from gameplay and send to the graveyard
 	 */
 	public void deActivate();

@@ -22,13 +22,6 @@ public class Rook implements Piece {
 		this.preference = 3;
 		this.pieceNo = pieceNo;
 	}
-	
-	
-	@Override
-	public void moveTo(int[] newPosition, int[] currentPos) {
-			currentPos = newPosition;
-			firstMove = false;
-	}
 
 	@Override
 	public void deActivate() {

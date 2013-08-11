@@ -1,14 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//test c9 commit to github
 public class Null implements Piece {
-
-	@Override
-	public void moveTo(int[] newPosition, int [] currentPos){
-		
-		
-	}
 
 	@Override
 	public void deActivate() {

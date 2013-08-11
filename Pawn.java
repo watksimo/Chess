@@ -25,39 +25,48 @@ public class Pawn implements Piece {
 	
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
-		List<int[]> moves = new ArrayList<int[]>();
+		List<int[]> possibleMoves = new ArrayList<int[]>();
 		int x = currentPos[0];
 		int y = currentPos[1];
 		
 		//White
 		if(!this.team) {
+			//hasn't made first move
 			if(!this.firstMove) {
 				int[] a = {x+2, y};
-				int[] b = {x+1, y};
-				moves.add(a);
-				moves.add(b);
-				if(y==0) {
-					int[] c = {x+1, y+1};
-					moves.add(c);
-				}
-				if(y==7) {
-					int[] d = {x+1, y-1};
-					moves.add(d);
-				}
+				possibleMoves.add(a);
 			}
-			
+			int[] b = {x+1, y};
+			int[] c = {x+1, y+1};
+			int[] d = {x+1, y-1};
+			possibleMoves.add(b);
+			possibleMoves.add(c);
+			possibleMoves.add(d);
 		} else {	//Black
+			//hasn't made first move
+			if(!this.firstMove) {
+				int[] a = {x-2, y};
+				possibleMoves.add(a);
+			}
+			int[] b = {x-1, y};
+			int[] c = {x-1, y+1};
+			int[] d = {x-1, y-1};
+			possibleMoves.add(b);
+			possibleMoves.add(c);
+			possibleMoves.add(d);
 		}
-		return moves;
-	}
-
-	@Override
-	public void moveTo(int[] newPosition, int [] currentPos){
 		
+		List<int[]> movesToReturn = new ArrayList<int[]>();
+		//Check for and remove moves not on the board
+		for(int i=0; i<possibleMoves.size(); i++) {
+			int[] move = possibleMoves.get(i);
+			if((0 <= move[0] && move[0] <= 7) && (0 <= move[1] && move[1] <= 7)) {
+				movesToReturn.add(possibleMoves.get(i));	
+			}
+		}
 		
+		return movesToReturn;
 	}
-
-	
 
 	@Override
 	public void deActivate() {
@@ -98,8 +107,7 @@ public class Pawn implements Piece {
 
 	@Override
 	public boolean getActiveState() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.active;
 	}
 
 	@Override
