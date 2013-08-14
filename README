@@ -23,4 +23,7 @@ Version 0.06
 -King works and takes perfectly, yet to implement castle
 -Added functionality so pieces won't jump over other pieces
 
+Version 0.07
+-Added stalemate functionality
+  This will check that the king isn't in check, and check that no other piece can currently move
 
