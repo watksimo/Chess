@@ -6,6 +6,17 @@ Initial commit of game
 Version 0.02
 -  Added King and Rook Pieces still in testing
 
+Version 0.03
+-Added all pieces without the ability to move
+
+Version 0.04 
+-Knight and pawn move
+-queen bishop king rook still in progress
+
+Version 0.05
+-Added check for check functionality
+-Refining pieces still 0.06 should have king and rook movement functionaility
+
 
 Things in progress + working on
 Pawn
