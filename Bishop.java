@@ -25,13 +25,13 @@ public class Bishop implements Piece{
 
 	@Override
 	public void deActivate() {
-		// TODO Auto-generated method stub
+		active = false;
 		
 	}
 
 	@Override
 	public void reActivate() {
-		// TODO Auto-generated method stub
+		active = true;
 		
 	}
 	
@@ -56,26 +56,50 @@ public class Bishop implements Piece{
 
 	@Override
 	public boolean getFirstMove() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.firstMove;
 	}
 
 	@Override
 	public boolean getActiveState() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.active;
 	}
 
 	@Override
 	public int getPreference() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.preference;
 	}
 
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
-		// TODO Auto-generated method stub
-		return null;
+		List<int[]> moves = new ArrayList<int[]>();
+		int x = currentPos[0];
+		int y = currentPos[1];
+		//add all moves
+		for (int i = 1; i <= 7; i++) {
+			int[] upRight = {x+i,y+i};
+			int[] upLeft = {x-i,y+i};
+			int[] downRight = {x+i,y-i};
+			int[] downLeft = {x-i,y-i};
+			moves.add(upRight);
+			moves.add(upLeft);
+			moves.add(downRight);
+			moves.add(downLeft);
+		}
+		//remove impossible moves
+		//iterate over all moves in moves List
+		for (int j=0; j<moves.size();j++) {
+			int[] coords = moves.get(j);
+			//remove the move if coordinate is out of bounds
+			if ((coords[0] < 0) || (coords[0] > 7)) {
+				moves.remove(coords);
+				j--;
+			}
+			if ((coords[1] < 0) || (coords[1] > 7)) {
+				moves.remove(coords);
+				j--;
+			}
+		}
+		return moves;
 	}
 
 	@Override
