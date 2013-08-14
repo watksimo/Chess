@@ -17,11 +17,10 @@ Version 0.05
 -Added check for check functionality
 -Refining pieces still 0.06 should have king and rook movement functionaility
 
+Version 0.06
+-Rook moves and takes perfectly
+-Working on bishop and queen currently have a bug checking the right side of the board
+-King works and takes perfectly, yet to implement castle
+-Added functionality so pieces won't jump over other pieces
 
-Things in progress + working on
-Pawn
-Queen
-King + rook castle
-Bishop
-Knight
-Piece movement
+
