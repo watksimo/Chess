@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -77,8 +78,8 @@ public class Bishop implements Piece{
 		//add all moves
 		for (int i = 1; i <= 7; i++) {
 			int[] upRight = {x+i,y+i};
-			int[] upLeft = {x-i,y+i};
-			int[] downRight = {x+i,y-i};
+			int[] upLeft = {x+i,y-i};
+			int[] downRight = {x-i,y+i};
 			int[] downLeft = {x-i,y-i};
 			moves.add(upRight);
 			moves.add(upLeft);
@@ -98,7 +99,12 @@ public class Bishop implements Piece{
 				moves.remove(coords);
 				j--;
 			}
+			
 		}
+		/*for (int f = 0; f<moves.size(); f++){
+			
+		System.out.println(Arrays.toString((moves).get(f)));
+		}*/
 		return moves;
 	}
 
