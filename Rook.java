@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rook implements Piece {
-	public static List<int[]> moves = new ArrayList<int[]>();
 
 	boolean team;
 	boolean firstMove;
@@ -71,11 +70,12 @@ public class Rook implements Piece {
 
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
+		List<int[]> moves = new ArrayList<int[]>();
 		int x = currentPos[0];// current row position
 		int y = currentPos[1];// current column position
 
 		// int [] castle = {x, y+2};
-		
+
 		// moves.add(castle);
 		for (int i = 1; i <= 7; i++) {
 
@@ -110,17 +110,20 @@ public class Rook implements Piece {
 			}
 
 			if (x == 0) {
-				removeMoves(null, b, null, null);
+
+				moves.remove(b);
 			}
 			if (y == 0) {
-				removeMoves(null, null, null, d);
 
+				moves.remove(d);
 			}
 			if (y == 7) {
-				removeMoves(null, null, c, null);
+
+				moves.remove(c);
 			}
 			if (x == 7) {
-				removeMoves(a, null, null, null);
+
+				moves.remove(a);
 			}
 
 		}
@@ -131,26 +134,6 @@ public class Rook implements Piece {
 
 		return moves;
 	}
-
-	public void removeMoves(int[] a, int[] b, int[] c, int[] d) {
-		if (a == null) {
-		} else {
-			moves.remove(a);
-		}
-		if (b == null) {
-		} else {
-			moves.remove(b);
-		}
-		if (c == null) {
-		} else {
-			moves.remove(c);
-		}
-		if (d == null) {
-		} else {
-			moves.remove(d);
-		}
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -163,7 +146,6 @@ public class Rook implements Piece {
 		result = prime * result + (team ? 1231 : 1237);
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -187,6 +169,4 @@ public class Rook implements Piece {
 		return true;
 	}
 
-	
-	
 }

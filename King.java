@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class King implements Piece {
-	public static List<int[]> moves = new ArrayList<int[]>();
 
 	@Override
 	public int hashCode() {
@@ -40,7 +39,6 @@ public class King implements Piece {
 	boolean active;
 	int preference;
 	boolean isChecked;
-
 
 	/**
 	 * Initialises the piece
@@ -87,7 +85,7 @@ public class King implements Piece {
 
 	@Override
 	public boolean getFirstMove() {
-		return this.firstMove;	
+		return this.firstMove;
 	}
 
 	@Override
@@ -102,10 +100,10 @@ public class King implements Piece {
 
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
-
+		List<int[]> moves = new ArrayList<int[]>();
 		int x = currentPos[0];// current row position
 		int y = currentPos[1];// current column position
-		
+
 		int[] a = { x + 1, y }; // forward
 		int[] b = { x + 1, y + 1 }; // forward right
 		int[] c = { x + 1, y - 1 }; // forward left
@@ -122,33 +120,43 @@ public class King implements Piece {
 		moves.add(g);
 		moves.add(h);
 		moves.add(f);
-		
+
 		if (firstMove) {
 			int[] castle = { x, y + 2 };
 			moves.add(castle);
-		
+
 			if (!firstMove) {
 				moves.remove(castle);
 			}
 		}
-			
-			
-				if (y == 7) {
-					removeMoves(null, b, null, d, null, f, null, null);
-				}
-				if (x == 7) {
-					removeMoves(a, b, c, null, null, null, null, null);
-				}
 
-				if (y == 0) {
-					removeMoves(null,null, c, null, e, null, null, h);
-				}
-				if (x == 0) {
-					removeMoves(null, null, null, null, null, f, g, h);
-				}			
+		if (y == 7) {
+
+			moves.remove(b);
+			moves.remove(d);
+			moves.remove(f);
+		}
+		if (x == 7) {
+
+			moves.remove(a);
+			moves.remove(b);
+			moves.remove(c);
+		}
+
+		if (y == 0) {
+
+			moves.remove(c);
+			moves.remove(e);
+			moves.remove(h);
+		}
+		if (x == 0) {
+			;
+			moves.remove(f);
+			moves.remove(g);
+			moves.remove(h);
+		}
 		return moves;
-		}	
-	
+	}
 
 	public boolean isChecked() {
 		return isChecked;
@@ -176,70 +184,7 @@ public class King implements Piece {
 	public ArrayList<int[]> getChecks(Board board) {
 
 		ArrayList<int[]> possibleChecks = new ArrayList<int[]>();
-		// for (int x = 0; x<board.
 		return null;
 
 	}
-
-	public void removeMoves(int[] a, int[] b, int[] c, int[] d, int[] e,
-			int[] f, int[] g, int[] h) {
-		if (a == null) {
-
-		}
-
-		else {
-			moves.remove(a);
-		}
-		if (b == null) {
-
-		}
-
-		else {
-			moves.remove(b);
-		}
-		if (c == null) {
-
-		}
-
-		else {
-			moves.remove(c);
-		}
-		if (d == null) {
-
-		}
-
-		else {
-			moves.remove(d);
-		}
-		if (e == null) {
-
-		}
-
-		else {
-			moves.remove(e);
-		}
-		if (f == null) {
-
-		}
-
-		else {
-			moves.remove(f);
-		}
-		if (g == null) {
-
-		}
-
-		else {
-			moves.remove(g);
-		}
-		if (h == null) {
-
-		}
-
-		else {
-			moves.remove(h);
-		}
-
-	}
-
 }
