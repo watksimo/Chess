@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Rook implements Piece {
@@ -68,6 +70,7 @@ public class Rook implements Piece {
 		return this.preference;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<int[]> possibleMoves(int[] currentPos) {
 		List<int[]> moves = new ArrayList<int[]>();
@@ -75,7 +78,7 @@ public class Rook implements Piece {
 		int y = currentPos[1];// current column position
 
 		// int [] castle = {x, y+2};
-
+		
 		// moves.add(castle);
 		for (int i = 1; i <= 7; i++) {
 
@@ -125,13 +128,22 @@ public class Rook implements Piece {
 
 				moves.remove(a);
 			}
+			
 
-		}
-
+		
+			
 		// if (!firstMove){
 		// moves.remove(castle);
 		// }
-
+		}
+		HashSet<int []> hs = new HashSet<int []>();
+		hs.addAll(moves);
+		moves.clear();
+		moves.addAll(hs);
+		//for(int v =0; v<moves.size(); v++){
+			//System.out.println(Arrays.toString(moves.get(v)));
+		//}
+		
 		return moves;
 	}
 

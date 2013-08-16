@@ -145,108 +145,11 @@ public class Board {
 		}
 		System.out.println(Board_State);
 
-		/************** white rook and black rook tests ***********************/
-		/*
-		 * int[] goodmove2 = {3, 0 }; movePiece(whitePawn1, goodmove2); int[]
-		 * goodmove3 = { 4, 0 }; movePiece(whitePawn1, goodmove3); int[]
-		 * takemove1 = { 5, 0 }; movePiece(whitePawn1, takemove1); int[]
-		 * takemove2 = {6, 1 }; movePiece(whitePawn1, takemove2); int[]
-		 * takemove40 = {7, 2 }; movePiece(whitePawn1, takemove40);
-		 * 
-		 * int[] aj = findPiece(blackPawn1);
-		 * System.out.println(Arrays.toString(aj));
-		 * System.out.println("blackpawn"); System.out.println(Board_State);
-		 * int[] goodmov1 = {4, 0 }; movePiece(blackPawn1, goodmov1); int[]
-		 * goodmov2 = { 3, 0 }; movePiece(blackPawn1, goodmov2); int[] takemov3
-		 * = { 2, 0 }; movePiece(blackPawn1, takemov3); int[] takemov4 = {1, 1
-		 * }; movePiece(blackPawn1, takemov4); int[] takemove3 = { 7, 0 };
-		 * movePiece(whiteRook1, takemove3); int[] takemove33 = { 6, 0 };
-		 * movePiece(whiteRook1, takemove33); int[] takemove4 = { 7, 0 };
-		 * movePiece(whiteRook1, takemove4); int[] takemove5 = { 7, 1 };
-		 * movePiece(whiteRook1, takemove5);
-		 */
-
-		// int [] takemove8 = {0,0};
-		// movePiece(blackRook1, takemove8);
-		/*
-		 * int [] takemove9 = {0,1}; movePiece(blackRook1, takemove9); int []
-		 * takemove11 = {1,1}; movePiece(blackRook1, takemove11);
-		 */
-		/************* white and black bishop tests ***********************/
-		/*
-		 * int [] move1 = {2, 1}; movePiece(whitePawn2, move1); int [] move2 =
-		 * {1,1}; movePiece(whiteBishop1, move2); int [] move3 = {6,6};
-		 * movePiece(whiteBishop1, move3);
-		 * System.out.println(Arrays.toString(findPiece(blackPawn7)));
-		 * System.out.println(Board_State);
-		 */
-		/*int [] move1 = {4,0};
-		int [] move2 = {3,0};
-		int [] move3 = {2,0};
-		int [] move4 = {1,1};*/
-		//int [] move5 = {3,0};
-		//int [] move6 = {3,7};
-		/*movePiece(blackPawn1, move1);
-		movePiece(blackPawn1, move2);
-		movePiece(blackPawn1, move3);
-		movePiece(blackPawn1, move4);*/
-	//	movePiece(blackRook1, move5);
-		//movePiece(blackRook1, findPiece(whitePawn1));
 		
-		
-	//	int[] move4 = { 5, 4 };
-		//movePiece(blackPawn5, move4);
-
-		//int [] move5 = {5,3};
-		//movePiece(blackBishop2, move5);
-		//int [] takePawn8 = findPiece(whitePawn7);
-		//movePiece(blackBishop2, takePawn8);
-		/*for (int i=0; i<blackBishop2.possibleMoves(move5).size(); i++){
-			System.out.println(Arrays.toString(blackBishop2.possibleMoves(move5).get(i)));
-		}*/
-		//for (int i=0; i<allowedMoves(blackBishop2).size(); i++){
-			//System.out.println(Arrays.toString(allowedMoves(blackBishop2).get(i)));
-		//}
-	
-		/*int [] pos = {2, 0};
-		movePiece(blackBishop2, pos);
-		movePiece(blackBishop2, findPiece(whitePawn2));
-		movePiece(blackBishop2, findPiece(whiteBishop1));
-		movePiece(blackBishop2, findPiece(whitePawn4));
-		int [] pos1 = {3, 5};
-		movePiece(blackBishop2, pos1);
-		movePiece(blackBishop2, findPiece(whitePawn8));*/
+		int [] move3 = {2,5};
+		movePiece(whiteQueen, move3);
+		movePiece(whiteQueen, findPiece(blackPawn6));
 		System.out.println(Board_State);
-		/********************* queen testing *******************/
-		// int [] m
-
-
-		// movePiece(whitePawn5, move6);
-		/*
-		 * System.out.println(allowedMoves(whiteQueen)); int [] move7 = {2,4};
-		 * movePiece(whiteQueen, move7); int [] move8 = {2,5};
-		 * movePiece(whiteQueen, move8); int [] move9 = {6,5};
-		 * movePiece(whiteQueen, move9); System.out.println(Board_State);
-		 * System.out.println(whiteGraveyard);
-		 */
-		/*
-		 * int [] goodmove4 = {6 ,0}; int [] b = findPiece(blackRook1);
-		 * System.out.println(Arrays.toString(b)); System.out.println("rook");
-		 * movePiece(blackRook1, goodmove4); System.out.println(Board_State);
-		 * System.out.println(blackGraveyard); int [] f = findPiece(whiteKing);
-		 * System.out.println(Arrays.toString(f)); int[] goodmove5 = {4, 3 };
-		 * movePiece(blackPawn4, goodmove5); int[] goodmove1 = {6, 3};
-		 * movePiece(blackKing, goodmove1); int [] g = findPiece(blackKing);
-		 * System.out.println(Arrays.toString(g)); System.out.println("king");
-		 * System.out.println(Board_State);
-		 */
-		/*
-		 * int [] y = {5, 1};
-		 * System.out.println(Arrays.toString(findPiece(blackPawn5)));
-		 * System.out.println(Arrays.toString(findPiece(blackBishop2)));
-		 * movePiece(blackPawn2, y); int [] x = {6,1}; movePiece(blackBishop1,
-		 * x); System.out.println(Board_State);
-		 */
 
 	}
 
@@ -320,13 +223,14 @@ public class Board {
 	private boolean checkForStaleMate(boolean Team) {
 
 		boolean staleMate = false;
-		//check that the king isn't in check, then check all the pieces to see 
-		//if they can move anywhere, if they can't then it's a stalemate
+		// check that the king isn't in check, then check all the pieces to see
+		// if they can move anywhere, if they can't then it's a stalemate
 		if (!checkForCheck(Team) && !checkMoves(findActivePieces())) {
 			staleMate = true;
 		}
 		return staleMate;
 	}
+
 	/**
 	 * Deactivates the piece from play and adds it to the graveyard
 	 * 
@@ -377,9 +281,9 @@ public class Board {
 
 	public List<int[]> allowedMoves(Piece piece) {
 		int[] currentPos = findPiece(piece);
+
 		List<int[]> possibleMoves = piece.possibleMoves(currentPos);
 		List<int[]> allowableMoves = new ArrayList<int[]>();
-
 		/*
 		 * Checks if possibleMoves spaces are occupied, if occupied by own team
 		 * don't allow, if occupied by other team allow.
@@ -396,7 +300,7 @@ public class Board {
 					int y = possibleMoves.get(i)[1];
 					List<Piece> row = Board_State.get(x);
 					Piece onSquare = row.get(y);
-					
+
 					// If piece on the space is on opposing team add to
 					// allowable
 					if (piece.getTeam() != onSquare.getTeam()) {
@@ -437,6 +341,7 @@ public class Board {
 
 			allowableMoves = new ArrayList<int[]>(this.removeJumpsRook(
 					possibleMoves, currentPos, piece));
+
 		}
 		/*
 		 * for (int i = 0; i < possibleMoves.size(); i++) { // If the space is
@@ -487,15 +392,24 @@ public class Board {
 		}
 		// Queen
 		if (piece.getClass() == whiteQueen.getClass()) {
-			this.removeJumpsBishop(possibleMoves, currentPos, piece);
-			this.removeJumpsRook(possibleMoves, currentPos, piece);
+			// this.removeJumpsBishop(possibleMoves, currentPos, piece);
+			// this.removeJumpsRook(possibleMoves, currentPos, piece);
 			allowableMoves = new ArrayList<int[]>();
-			allowableMoves.addAll(this.removeJumpsBishop(possibleMoves,
-					currentPos, piece));
+
 			allowableMoves.addAll(this.removeJumpsRook(possibleMoves,
 					currentPos, piece));
-		}
+			allowableMoves.addAll(this.removeJumpsBishop(possibleMoves,
+					currentPos, piece));
 
+			this.removeJumpsRook(possibleMoves, currentPos, piece);
+
+			// allowableMoves.addAll(this.removeJumpsRook(possibleMoves,
+			// currentPos, piece));
+		}
+		for (int i = 0; i < allowableMoves.size(); i++) {
+			System.out.println(piece + " "
+					+ Arrays.toString(allowableMoves.get(i)));
+		}
 		return allowableMoves;
 	}
 
@@ -586,27 +500,26 @@ public class Board {
 	 * checks directions bishop can move and removes jumps from possible moves
 	 */
 	private List<int[]> removeJumpsBishop(List<int[]> possibleMoves,
-		int[] currentPos, Piece piece) {
+			int[] currentPos, Piece piece) {
 		int x = currentPos[0];
 		int y = currentPos[1];
-		//System.out.println(Arrays.toString(currentPos));
+		// System.out.println(Arrays.toString(currentPos));
 		int xCheck;
 		int yCheck;
 		List<int[]> possible = new ArrayList<int[]>(possibleMoves);
-		
-
 
 		// remove jumps for moving UP and RIGHT
 		for (int i = 1; i <= 7; i++) {
 			int[] upRight = { x + i, y + i };
 			if ((upRight[0] >= 0) && (upRight[0] <= 7) && (upRight[1] >= 0)
 					&& (upRight[1] <= 7)) {
-				
+
 				// int g = possibleMoves.get(i)[0];
 				// int f = possibleMoves.get(i)[1];
 				// if space is not occupied continue
 				if (!occupiedSpace(upRight)) {
 					continue;
+				
 				} else {
 					List<Piece> row = Board_State.get(x + i);
 					Piece onSquare = row.get(y + i);
@@ -637,8 +550,7 @@ public class Board {
 								}
 							}
 						}
-						System.out.println(row);
-						System.out.println(onSquare);
+
 						break;
 					}
 				}
@@ -647,7 +559,7 @@ public class Board {
 
 		// remove jumps for moving UP and LEFT
 		for (int i = 1; i <= 7; i++) {
-			
+
 			int[] upLeft = { x + i, y - i };
 			if ((upLeft[0] >= 0) && (upLeft[0] <= 7) && (upLeft[1] >= 0)
 					&& (upLeft[1] <= 7)) {
@@ -664,12 +576,62 @@ public class Board {
 							for (int k = 0; k < possible.size(); k++) {
 								xCheck = possible.get(k)[0];
 								yCheck = possible.get(k)[1];
+								if ((xCheck == (x + i + j))
+										&& (yCheck == (y - i -j))) {
+									possible.remove(k);
+								}
+							}
+						}
+						break;
+						// remove possible moves FROM ally piece onwards in
+						// direction
+					} else {
+						for (int j = 0; j <= 7; j++) {
+							for (int k = 0; k < possible.size(); k++) {
+								xCheck = possible.get(k)[0];
+								yCheck = possible.get(k)[1];
+								if ((xCheck == (x + i + j))
+										&& (yCheck == (y - i -j))) {
+									possible.remove(k);
+								}
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+
+		// remove jumps for moving DOWN and RIGHT
+		for (int i = 1; i <= 7; i++) {
+			/**/
+
+			int[] downRight = { x - i, y + i };
+			if ((downRight[0] >= 0) && (downRight[0] <= 7)
+					&& (downRight[1] >= 0) && (downRight[1] <= 7)) {
+				// if space is not occupied continue
+				if (!occupiedSpace(downRight)) {
+					continue;
+				} else {
+					List<Piece> row = Board_State.get(x - i);
+					Piece onSquare = row.get(y + i);
+					// System.out.println("HUZZAH CUNSE!!");
+					// remove possible moves AFTER enemy piece onwards in
+					// direction
+
+					if (piece.getTeam() != onSquare.getTeam()) {
+
+						for (int j = 1; j <= 7; j++) {
+							for (int k = 0; k < possible.size(); k++) {
+								xCheck = possible.get(k)[0];
+								yCheck = possible.get(k)[1];
 								if ((xCheck == (x - i - j))
 										&& (yCheck == (y + i + j))) {
 									possible.remove(k);
 								}
 							}
 						}
+
 						break;
 						// remove possible moves FROM ally piece onwards in
 						// direction
@@ -690,60 +652,9 @@ public class Board {
 			}
 		}
 
-		// remove jumps for moving DOWN and RIGHT
-		for (int i = 1; i <= 7; i++) {
-			/**/
-			
-			int[] downRight = { x - i, y + i };
-			if ((downRight[0] >= 0) && (downRight[0] <= 7)
-					&& (downRight[1] >= 0) && (downRight[1] <= 7)) {
-				// if space is not occupied continue
-				if (!occupiedSpace(downRight)) {
-					continue;
-				} else {
-					List<Piece> row = Board_State.get(x - i);
-					Piece onSquare = row.get(y + i);
-					//System.out.println("HUZZAH CUNSE!!");
-					// remove possible moves AFTER enemy piece onwards in
-					// direction
-				
-					if (piece.getTeam() != onSquare.getTeam()) {
-			
-						for (int j = 1; j <= 7; j++) {
-							for (int k = 0; k < possible.size(); k++) {
-								xCheck = possible.get(k)[0];
-								yCheck = possible.get(k)[1];
-								if ((xCheck == (x - i - j))
-										&& (yCheck == (y + i + j))) {
-									possible.remove(k);
-								}
-							}
-						}
-						
-						break;
-						// remove possible moves FROM ally piece onwards in
-						// direction
-					} else {
-						for (int j = 0; j <= 7; j++) {
-							for (int k = 0; k < possible.size(); k++) {
-								xCheck = possible.get(k)[0];
-								yCheck = possible.get(k)[1];
-								if ((xCheck == (x - i - j))
-										&& (yCheck == (y + i + j))) {
-									possible.remove(k);
-								}
-							}
-						}
-						break;
-					}
-				}
-			}
-		}
-		
-		
 		// remove jumps for moving DOWN and LEFT
 		for (int i = 1; i <= 7; i++) {
-			
+
 			int[] downLeft = { x - i, y - i };
 			if ((downLeft[0] >= 0) && (downLeft[0] <= 7) && (downLeft[1] >= 0)
 					&& (downLeft[1] <= 7)) {
@@ -789,6 +700,7 @@ public class Board {
 		 * for(int i=0;i<possibleMoves.size();i++) {
 		 * System.out.println(Arrays.toString(possible.get(i))); }
 		 */
+
 		return possible;
 
 	}
@@ -801,15 +713,20 @@ public class Board {
 		int xCheck;
 		int yCheck;
 		List<int[]> possible = new ArrayList<int[]>(possibleMoves);
+		// public boolean checkSpace(Piece piece, int [] currentPos){
 
 		// remove jumps for moving UP
 		for (int i = 1; i <= 7; i++) {
+
 			int[] up = { x + i, y };
 			if ((up[0] >= 0) && (up[0] <= 7) && (up[1] >= 0) && (up[1] <= 7)) {
-				// if space is not occupied continue
-				if (!occupiedSpace(up)) {
+				
+			 if (!occupiedSpace(up)) {
+					System.out.println("up" + " "+ occupiedSpace( up));
 					continue;
+				
 				} else {
+					
 					List<Piece> row = Board_State.get(x + i);
 					Piece onSquare = row.get(y);
 
@@ -819,9 +736,13 @@ public class Board {
 						for (int j = 1; j <= 7; j++) {
 							for (int k = 0; k < possible.size(); k++) {
 								xCheck = possible.get(k)[0];
+								System.out.println("xCheck" + " " +xCheck);
+								
 								yCheck = possible.get(k)[1];
+								System.out.println("yCheck" + " " + yCheck);
 								if ((xCheck == (x + i + j)) && (yCheck == (y))) {
 									possible.remove(k);
+
 								}
 							}
 						}
@@ -832,9 +753,12 @@ public class Board {
 						for (int j = 0; j <= 7; j++) {
 							for (int k = 0; k < possible.size(); k++) {
 								xCheck = possible.get(k)[0];
+								//System.out.println("xCheck" + " " +xCheck);
 								yCheck = possible.get(k)[1];
-								if ((xCheck == (x + i)) && (yCheck == (y))) {
+								//System.out.println("yCheck" + " " + yCheck);
+								if ((xCheck == (x + i + j)) && (yCheck == (y))) {
 									possible.remove(k);
+								
 								}
 							}
 						}
@@ -846,11 +770,13 @@ public class Board {
 
 		// remove jumps for moving LEFT
 		for (int i = 1; i <= 7; i++) {
+
 			int[] Left = { x, y - i };
 			if ((Left[0] >= 0) && (Left[0] <= 7) && (Left[1] >= 0)
 					&& (Left[1] <= 7)) {
 				// if space is not occupied continue
 				if (!occupiedSpace(Left)) {
+					System.out.println("Left:" + " " + occupiedSpace(Left));
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x);
@@ -893,6 +819,7 @@ public class Board {
 					&& (Right[1] <= 7)) {
 				// if space is not occupied continue
 				if (!occupiedSpace(Right)) {
+					System.out.println("Right:" + " " + occupiedSpace(Right));
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x);
@@ -919,6 +846,7 @@ public class Board {
 								yCheck = possible.get(k)[1];
 								if ((xCheck == (x) && (yCheck == (y + i + j)))) {
 									possible.remove(k);
+
 								}
 							}
 						}
@@ -936,7 +864,7 @@ public class Board {
 
 				// if space is not occupied continue
 				if (!occupiedSpace(down)) {
-
+					System.out.println("Down:" + " " + occupiedSpace(down));
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x - i);
@@ -966,21 +894,21 @@ public class Board {
 								yCheck = possible.get(k)[1];
 								if ((xCheck == (x - i - j)) && (yCheck == (y))) {
 									possible.remove(k);
+
 								}
 							}
 						}
+
 						break;
 					}
 				}
 			}
 		}
-		/*
-		 * for(int i=0;i<possibleMoves.size();i++) {
-		 * System.out.println(Arrays.toString(possible.get(i))); }
-		 */
+
 		return possible;
 
 	}
+
 	public boolean checkMoves(List<Piece> activePieces) {
 		boolean canMove = true;
 		activePieces = findActivePieces();
