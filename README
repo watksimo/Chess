@@ -21,10 +21,14 @@ Version 0.06
 -Rook moves and takes perfectly
 -Working on bishop and queen currently have a bug checking the right side of the board
 -King works and takes perfectly, yet to implement castle
--Added functionality so pieces won't jump over other pieces
+-Added functionality so pieces won't jump over other pieces (buggy)
 
 Version 0.07
 -Added stalemate functionality
 -Also added a method that will check if any pieces have any allowable moves
   This will check that the king isn't in check, and check that no other piece can currently move
+  
+Version 0.08 
+-All pieces should move correctly, take correclty and function correctly.
+
 
