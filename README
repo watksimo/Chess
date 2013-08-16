@@ -1,4 +1,4 @@
-Readme started please add what you work and increase the version by .01 or .1
+Kieran will be monitoring and regularly updating the ReadMe file
 
 Version 0.01
 Initial commit of game
@@ -17,11 +17,14 @@ Version 0.05
 -Added check for check functionality
 -Refining pieces still 0.06 should have king and rook movement functionaility
 
+Version 0.06
+-Rook moves and takes perfectly
+-Working on bishop and queen currently have a bug checking the right side of the board
+-King works and takes perfectly, yet to implement castle
+-Added functionality so pieces won't jump over other pieces
 
-Things in progress + working on
-Pawn
-Queen
-King + rook castle
-Bishop
-Knight
-Piece movement
+Version 0.07
+-Added stalemate functionality
+-Also added a method that will check if any pieces have any allowable moves
+  This will check that the king isn't in check, and check that no other piece can currently move
+
