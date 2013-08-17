@@ -42,10 +42,7 @@ public class Board {
 				row.add(d, nullPiece);
 			}
 		}
-		for (int i = 0; i<findActivePieces().size(); i++){
-			System.out.println(i);
-		System.out.println(checkMoves(findActivePieces()));
-	}
+
 
 	}
 
