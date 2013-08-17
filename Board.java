@@ -3,43 +3,19 @@ import java.util.*;
 public class Board {
 
 	FixedSizeList<FixedSizeList<Piece>> Board_State;
-	ArrayList<Piece> whiteGraveyard;
-	ArrayList<Piece> blackGraveyard;
+	ArrayList<Piece> whiteGraveyard, blackGraveyard;
 
 	// Initialise pieces
-	Pawn whitePawn1;
-	Pawn whitePawn2;
-	Pawn whitePawn3;
-	Pawn whitePawn4;
-	Pawn whitePawn5;
-	Pawn whitePawn6;
-	Pawn whitePawn7;
-	Pawn whitePawn8;
-	Rook whiteRook1;
-	Knight whiteKnight1;
-	Bishop whiteBishop1;
-	King whiteKing;
-	Queen whiteQueen;
-	Bishop whiteBishop2;
-	Knight whiteKnight2;
-	Rook whiteRook2;
-
-	Pawn blackPawn1;
-	Pawn blackPawn2;
-	Pawn blackPawn3;
-	Pawn blackPawn4;
-	Pawn blackPawn5;
-	Pawn blackPawn6;
-	Pawn blackPawn7;
-	Pawn blackPawn8;
-	Rook blackRook1;
-	Knight blackKnight1;
-	Bishop blackBishop1;
-	King blackKing;
-	Queen blackQueen;
-	Bishop blackBishop2;
-	Knight blackKnight2;
-	Rook blackRook2;
+	Pawn whitePawn1, whitePawn2, whitePawn3, whitePawn4;
+	Pawn whitePawn5, whitePawn6, whitePawn7, whitePawn8;
+	Pawn blackPawn1, blackPawn2, blackPawn3, blackPawn4;
+	Pawn blackPawn5, blackPawn6, blackPawn7, blackPawn8;
+	Rook whiteRook1, whiteRook2, blackRook1, blackRook2;
+	Knight whiteKnight1, whiteKnight2, blackKnight1, blackKnight2;
+	Bishop whiteBishop1, whiteBishop2, blackBishop1, blackBishop2;
+	King whiteKing, blackKing;
+	Queen whiteQueen, blackQueen;
+	Null nullPiece;
 
 	/**
 	 * Initialises board to the default setup.
@@ -49,107 +25,23 @@ public class Board {
 		Board_State = new FixedSizeList<FixedSizeList<Piece>>();
 		blackGraveyard = new ArrayList<Piece>();
 		whiteGraveyard = new ArrayList<Piece>();
-
+		nullPiece = new Null();
+		
+		//Add 8 rows to the board
 		for (int a = 0; a < 8; a++) {
 			Board_State.add(a, new FixedSizeList<Piece>());
 		}
-
-		// Initialise white pieces
-		whitePawn1 = new Pawn(false, 1);
-		whitePawn2 = new Pawn(false, 2);
-		whitePawn3 = new Pawn(false, 3);
-		whitePawn4 = new Pawn(false, 4);
-		whitePawn5 = new Pawn(false, 5);
-		whitePawn6 = new Pawn(false, 6);
-		whitePawn7 = new Pawn(false, 7);
-		whitePawn8 = new Pawn(false, 8);
-		whiteRook1 = new Rook(false, 1);
-		whiteKnight1 = new Knight(false, 1);
-		whiteBishop1 = new Bishop(false, 1);
-		whiteKing = new King(false);
-		whiteQueen = new Queen(false);
-		whiteBishop2 = new Bishop(false, 2);
-		whiteKnight2 = new Knight(false, 2);
-		whiteRook2 = new Rook(false, 2);
-
-		// Add white pieces to row 1
-		FixedSizeList<Piece> row = Board_State.get(0);
-		row.add(0, whiteRook1);
-		row.add(1, whiteKnight1);
-		row.add(2, whiteBishop1);
-		row.add(3, whiteKing);
-		row.add(4, whiteQueen);
-		row.add(5, whiteBishop2);
-		row.add(6, whiteKnight2);
-		row.add(7, whiteRook2);
-
-		// Add white pawns to row 2
-		row = Board_State.get(1);
-		row.add(0, whitePawn1);
-		row.add(1, whitePawn2);
-		row.add(2, whitePawn3);
-		row.add(3, whitePawn4);
-		row.add(4, whitePawn5);
-		row.add(5, whitePawn6);
-		row.add(6, whitePawn7);
-		row.add(7, whitePawn8);
-
-		// Initialise black pieces
-		blackPawn1 = new Pawn(true, 1);
-		blackPawn2 = new Pawn(true, 2);
-		blackPawn3 = new Pawn(true, 3);
-		blackPawn4 = new Pawn(true, 4);
-		blackPawn5 = new Pawn(true, 5);
-		blackPawn6 = new Pawn(true, 6);
-		blackPawn7 = new Pawn(true, 7);
-		blackPawn8 = new Pawn(true, 8);
-		blackRook1 = new Rook(true, 1);
-		blackKnight1 = new Knight(true, 1);
-		blackBishop1 = new Bishop(true, 1);
-		blackKing = new King(true);
-		blackQueen = new Queen(true);
-		blackBishop2 = new Bishop(true, 2);
-		blackKnight2 = new Knight(true, 2);
-		blackRook2 = new Rook(true, 2);
-
-		// Add black pieces to row 1
-		row = Board_State.get(7);
-		row.add(0, blackRook1);
-		row.add(1, blackKnight1);
-		row.add(2, blackBishop1);
-		row.add(3, blackKing);
-		row.add(4, blackQueen);
-		row.add(5, blackBishop2);
-		row.add(6, blackKnight2);
-		row.add(7, blackRook2);
-
-		// Add black pawns to row 2
-		row = Board_State.get(6);
-		row.add(0, blackPawn1);
-		row.add(1, blackPawn2);
-		row.add(2, blackPawn3);
-		row.add(3, blackPawn4);
-		row.add(4, blackPawn5);
-		row.add(5, blackPawn6);
-		row.add(6, blackPawn7);
-		row.add(7, blackPawn8);
+		initialisePieces();
+		addPieces();
 
 		// Add null values to all other squares
-
-		Null nullPiece = new Null();
+		FixedSizeList<Piece> row;
 		for (int c = 2; c < 6; c++) {
 			row = Board_State.get(c);
 			for (int d = 0; d < 8; d++) {
 				row.add(d, nullPiece);
 			}
 		}
-		System.out.println(Board_State);
-
-		
-		int [] move3 = {2,5};
-		movePiece(whiteQueen, move3);
-		movePiece(whiteQueen, findPiece(blackPawn6));
-		System.out.println(Board_State);
 
 	}
 
@@ -171,7 +63,7 @@ public class Board {
 	 *            for White - True is for Black
 	 * @return True if the team is in 'Check', false otherwise.
 	 */
-	private boolean checkForCheck(boolean Team) {
+	public boolean checkForCheck(boolean Team) {
 		List<Piece> activePieces = findActivePieces();
 		List<Piece> activeEnemyPieces = new ArrayList<Piece>();
 		List<int[]> enemyMoves = new ArrayList<int[]>();
@@ -215,7 +107,7 @@ public class Board {
 	 *            False is for White - True is for Black
 	 * @return True if the team is in 'Checkmate', false otherwise.
 	 */
-	private boolean checkForCheckmate(boolean Team) {
+	public boolean checkForCheckmate(boolean Team) {
 
 		return true; // Change when implemented
 	}
@@ -263,7 +155,6 @@ public class Board {
 		int y = position[1];
 		FixedSizeList<Piece> row = Board_State.get(x);
 		Piece onSpace = row.get(y);
-		Null nullPiece = new Null();
 
 		if (onSpace.getClass() == nullPiece.getClass()) {
 			return false;
@@ -406,10 +297,12 @@ public class Board {
 			// allowableMoves.addAll(this.removeJumpsRook(possibleMoves,
 			// currentPos, piece));
 		}
+		/* Dont need to print this out, clogs console
 		for (int i = 0; i < allowableMoves.size(); i++) {
 			System.out.println(piece + " "
 					+ Arrays.toString(allowableMoves.get(i)));
 		}
+		*/
 		return allowableMoves;
 	}
 
@@ -430,7 +323,7 @@ public class Board {
 		}
 
 		if (!allowed) {
-			System.err.println("not allowable move");
+			System.err.println("not allowable move for " + piece + ":" + newPosition[0] + ", " + newPosition[1]);
 			return;
 		}
 
@@ -449,10 +342,10 @@ public class Board {
 			} else {
 				whiteGraveyard.add(onSquare);
 			}
-			Board_State.get(oldPos[0]).add(oldPos[1], new Null());
+			Board_State.get(oldPos[0]).add(oldPos[1], nullPiece);
 			Board_State.get(x).add(y, piece);
 		} else {
-			Board_State.get(oldPos[0]).add(oldPos[1], new Null());
+			Board_State.get(oldPos[0]).add(oldPos[1], nullPiece);
 			Board_State.get(x).add(y, piece);
 		}
 	}
@@ -472,7 +365,6 @@ public class Board {
 
 	public List<Piece> findActivePieces() {
 		List<Piece> activePieces = new ArrayList<Piece>();
-		Null nullPiece = new Null();
 
 		for (int i = 0; i < 8; i++) {
 			FixedSizeList<Piece> row = Board_State.get(i);
@@ -503,7 +395,6 @@ public class Board {
 			int[] currentPos, Piece piece) {
 		int x = currentPos[0];
 		int y = currentPos[1];
-		// System.out.println(Arrays.toString(currentPos));
 		int xCheck;
 		int yCheck;
 		List<int[]> possible = new ArrayList<int[]>(possibleMoves);
@@ -615,7 +506,6 @@ public class Board {
 				} else {
 					List<Piece> row = Board_State.get(x - i);
 					Piece onSquare = row.get(y + i);
-					// System.out.println("HUZZAH CUNSE!!");
 					// remove possible moves AFTER enemy piece onwards in
 					// direction
 
@@ -698,7 +588,6 @@ public class Board {
 		}
 		/*
 		 * for(int i=0;i<possibleMoves.size();i++) {
-		 * System.out.println(Arrays.toString(possible.get(i))); }
 		 */
 
 		return possible;
@@ -722,7 +611,7 @@ public class Board {
 			if ((up[0] >= 0) && (up[0] <= 7) && (up[1] >= 0) && (up[1] <= 7)) {
 				
 			 if (!occupiedSpace(up)) {
-					System.out.println("up" + " "+ occupiedSpace( up));
+					//System.out.println("up" + " "+ occupiedSpace( up)); Can we remove to stop redundancy in console
 					continue;
 				
 				} else {
@@ -736,10 +625,10 @@ public class Board {
 						for (int j = 1; j <= 7; j++) {
 							for (int k = 0; k < possible.size(); k++) {
 								xCheck = possible.get(k)[0];
-								System.out.println("xCheck" + " " +xCheck);
+								//System.out.println("xCheck" + " " +xCheck); Can you remove this kieren?
 								
 								yCheck = possible.get(k)[1];
-								System.out.println("yCheck" + " " + yCheck);
+								//System.out.println("yCheck" + " " + yCheck); Can you remove this kieren?
 								if ((xCheck == (x + i + j)) && (yCheck == (y))) {
 									possible.remove(k);
 
@@ -776,7 +665,7 @@ public class Board {
 					&& (Left[1] <= 7)) {
 				// if space is not occupied continue
 				if (!occupiedSpace(Left)) {
-					System.out.println("Left:" + " " + occupiedSpace(Left));
+					//System.out.println("Left:" + " " + occupiedSpace(Left)); Can we remove to stop redundancy in console
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x);
@@ -819,7 +708,7 @@ public class Board {
 					&& (Right[1] <= 7)) {
 				// if space is not occupied continue
 				if (!occupiedSpace(Right)) {
-					System.out.println("Right:" + " " + occupiedSpace(Right));
+					//System.out.println("Right:" + " " + occupiedSpace(Right)); Can we remove to stop redundancy in console
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x);
@@ -864,7 +753,7 @@ public class Board {
 
 				// if space is not occupied continue
 				if (!occupiedSpace(down)) {
-					System.out.println("Down:" + " " + occupiedSpace(down));
+					//System.out.println("Down:" + " " + occupiedSpace(down)); Can we remove to stop redundancy in console
 					continue;
 				} else {
 					List<Piece> row = Board_State.get(x - i);
@@ -873,7 +762,6 @@ public class Board {
 					// remove possible moves AFTER enemy piece onwards in
 					// direction
 					if (piece.getTeam() != onSquare.getTeam()) {
-						// System.out.println("I iz checking for team!!!");
 
 						for (int j = 1; j <= 7; j++) {
 							for (int k = 0; k < possible.size(); k++) {
@@ -921,5 +809,121 @@ public class Board {
 			}
 		}
 		return canMove;
+	}
+	
+	private void initialisePieces() {
+		// Initialise white pieces
+		whitePawn1 = new Pawn(false, 1);
+		whitePawn2 = new Pawn(false, 2);
+		whitePawn3 = new Pawn(false, 3);
+		whitePawn4 = new Pawn(false, 4);
+		whitePawn5 = new Pawn(false, 5);
+		whitePawn6 = new Pawn(false, 6);
+		whitePawn7 = new Pawn(false, 7);
+		whitePawn8 = new Pawn(false, 8);
+		whiteRook1 = new Rook(false, 1);
+		whiteKnight1 = new Knight(false, 1);
+		whiteBishop1 = new Bishop(false, 1);
+		whiteKing = new King(false);
+		whiteQueen = new Queen(false);
+		whiteBishop2 = new Bishop(false, 2);
+		whiteKnight2 = new Knight(false, 2);
+		whiteRook2 = new Rook(false, 2);
+		
+		// Initialise black pieces
+		blackPawn1 = new Pawn(true, 1);
+		blackPawn2 = new Pawn(true, 2);
+		blackPawn3 = new Pawn(true, 3);
+		blackPawn4 = new Pawn(true, 4);
+		blackPawn5 = new Pawn(true, 5);
+		blackPawn6 = new Pawn(true, 6);
+		blackPawn7 = new Pawn(true, 7);
+		blackPawn8 = new Pawn(true, 8);
+		blackRook1 = new Rook(true, 1);
+		blackKnight1 = new Knight(true, 1);
+		blackBishop1 = new Bishop(true, 1);
+		blackKing = new King(true);
+		blackQueen = new Queen(true);
+		blackBishop2 = new Bishop(true, 2);
+		blackKnight2 = new Knight(true, 2);
+		blackRook2 = new Rook(true, 2);
+	}
+	
+	public void addPieces() {
+		// Add white pieces to row 1
+		FixedSizeList<Piece> row = Board_State.get(0);
+		row.add(0, whiteRook1);
+		row.add(1, whiteKnight1);
+		row.add(2, whiteBishop1);
+		row.add(3, whiteKing);
+		row.add(4, whiteQueen);
+		row.add(5, whiteBishop2);
+		row.add(6, whiteKnight2);
+		row.add(7, whiteRook2);
+
+		// Add white pawns to row 2
+		row = Board_State.get(1);
+		row.add(0, whitePawn1);
+		row.add(1, whitePawn2);
+		row.add(2, whitePawn3);
+		row.add(3, whitePawn4);
+		row.add(4, whitePawn5);
+		row.add(5, whitePawn6);
+		row.add(6, whitePawn7);
+		row.add(7, whitePawn8);
+
+		// Add black pieces to row 1
+		row = Board_State.get(7);
+		row.add(0, blackRook1);
+		row.add(1, blackKnight1);
+		row.add(2, blackBishop1);
+		row.add(3, blackKing);
+		row.add(4, blackQueen);
+		row.add(5, blackBishop2);
+		row.add(6, blackKnight2);
+		row.add(7, blackRook2);
+
+		// Add black pawns to row 2
+		row = Board_State.get(6);
+		row.add(0, blackPawn1);
+		row.add(1, blackPawn2);
+		row.add(2, blackPawn3);
+		row.add(3, blackPawn4);
+		row.add(4, blackPawn5);
+		row.add(5, blackPawn6);
+		row.add(6, blackPawn7);
+		row.add(7, blackPawn8);
+	}
+
+	/**
+	 * Basic test that moves pieces for me to compare to actual board
+	 */
+	private void micksTest() {
+		int[] a = {2,2};
+		int[] b = {4,7};
+		int[] c = {2,1};
+		int[] d = {5,7};
+		int[] e = {2,0};
+		int[] f = {4,4};
+		int[] g = {3,7};
+		int[] h = {5,4};
+		int[] i = {0,2};
+		int[] j = {2,1};
+		
+		movePiece(whiteKnight1, a);
+		movePiece(blackPawn8, b);
+		movePiece(whitePawn2, c);
+		movePiece(blackRook2, d);
+		movePiece(whiteBishop1, e);
+		movePiece(blackPawn5, f);
+		movePiece(whitePawn8, g);
+		movePiece(blackQueen,h);
+		movePiece(whiteKing, i);
+		movePiece(blackQueen, j);
+		
+		System.out.println(Board_State);
+		System.out.println(blackGraveyard);
+		System.out.println(whiteGraveyard);
+		
 	}
 }
