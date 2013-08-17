@@ -857,6 +857,41 @@ public class Board {
 	}
 	
 	/**
+	 * Takes in a piece and returns true if that pieces team can perform the
+	 * king-castle swap and false otherwise
+	 * 
+	 * @param piece
+	 * 		Piece who's team is to be checked
+	 * @return
+	 * 		True if piece's team can perform the move, false otherwise
+	 */
+	private boolean kingCastleSwap(Piece piece) {
+		//If on the black team and king and rook1 haven't moved
+		if(piece.getTeam() && !blackKing.getFirstMove() && 
+				!blackRook1.getFirstMove()) {
+			int[] middleSquare1 = {7,1}; 
+			int[] middleSquare2 = {7,2}; 
+			//If both middle squares are empty
+			if(!occupiedSpace(middleSquare1) && !occupiedSpace(middleSquare2)) {
+				return true;
+			}
+		}
+		
+		//If on the white team and king and rook1 haven't moved
+		if(!piece.getTeam() && !whiteKing.getFirstMove() && 
+				!whiteRook1.getFirstMove()) {
+			int[] middleSquare1 = {0,1}; 
+			int[] middleSquare2 = {0,2}; 
+			//If both middle squares are empty
+			if(!occupiedSpace(middleSquare1) && !occupiedSpace(middleSquare2)) {
+				return true;
+			}
+		}
+		//Required conditions aren't met
+		return false;
+	}
+	
+	/**
 	 * Initialises all pieces on the board
 	 */
 	private void initialisePieces() {
