@@ -42,6 +42,10 @@ public class Board {
 				row.add(d, nullPiece);
 			}
 		}
+		for (int i = 0; i<findActivePieces().size(); i++){
+			System.out.println(i);
+		System.out.println(checkMoves(findActivePieces()));
+	}
 
 	}
 
@@ -117,7 +121,7 @@ public class Board {
 		boolean staleMate = false;
 		// check that the king isn't in check, then check all the pieces to see
 		// if they can move anywhere, if they can't then it's a stalemate
-		if (!checkForCheck(Team) && !checkMoves(findActivePieces())) {
+		if (!checkForCheck(Team) && !checkMoves(findActivePieces()).contains(true)) {
 			staleMate = true;
 		}
 		return staleMate;
@@ -838,22 +842,17 @@ public class Board {
 	}
 
 	/*
-	 * Can whoever added this function please fix it, the activePieces input 
-	 * is immediately overwritten by a function (making it redundant), and 
-	 * reading through it the value that is returned is changed each time the
-	 * loop goes through - should it be returning a list of booleans?
-	 * 
-	 * This means that stalemate doesn't work either as it implements this.
+	 * Fixed
+	 * activePieces should only ever be parsed in as findActivePieces()
 	 */
-	public boolean checkMoves(List<Piece> activePieces) {
-		boolean canMove = true;
-		activePieces = findActivePieces();
-
+	public List<Boolean> checkMoves(List<Piece> activePieces) {
+		
+		List<Boolean> canMove = new ArrayList<Boolean>();
 		for (int i = 0; i < activePieces.size(); i++) {
 			if (allowedMoves(activePieces.get(i)).isEmpty()) {
-				canMove = false;
+				canMove.add(false);
 			} else {
-				canMove = true;
+				canMove.add(true);
 			}
 		}
 		return canMove;
