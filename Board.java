@@ -170,6 +170,15 @@ public class Board {
 
 	}
 
+	/**
+	 * Returns a list of all moves the given piece is allowed to make with it's
+	 * specific move restrictions.
+	 * 
+	 * @param piece
+	 * 		The piece for which the allowed moves are desired
+	 * @return
+	 * 		A list of all allowed moves the piece can make
+	 */
 	public List<int[]> allowedMoves(Piece piece) {
 		int[] currentPos = findPiece(piece);
 
@@ -350,6 +359,14 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Finds and returns the board co-ordinates for the given piece
+	 * 
+	 * @param piece
+	 * 		The piece for which the location is desires
+	 * @return
+	 * 		The current co-ordinates of the piece on the board
+	 */
 	public int[] findPiece(Piece piece) {
 		for (int i = 0; i < 8; i++) {
 			FixedSizeList<Piece> row = Board_State.get(i);
@@ -363,6 +380,12 @@ public class Board {
 		return null;
 	}
 
+	/**
+	 * Finds and returns a list of all active pieces currently on the board
+	 * 
+	 * @return
+	 * 		A list of all currently active pieces on the board
+	 */
 	public List<Piece> findActivePieces() {
 		List<Piece> activePieces = new ArrayList<Piece>();
 
@@ -388,8 +411,9 @@ public class Board {
 
 	}
 
-	/*
-	 * checks directions bishop can move and removes jumps from possible moves
+	/**
+	 * Checks directions bishop can move and all removes jumps from possible 
+	 * moves
 	 */
 	private List<int[]> removeJumpsBishop(List<int[]> possibleMoves,
 			int[] currentPos, Piece piece) {
@@ -594,6 +618,22 @@ public class Board {
 
 	}
 
+	/**
+	 * Returns a list with all impossible jumps removed from the rooks 
+	 * possible moves.
+	 * 
+	 * @param possibleMoves
+	 * 		List of all possible moves the rook can make, not disregarding
+	 * 		disallowed moves
+	 * @param currentPos
+	 * 		The current position of the given rook
+	 * @param piece
+	 * 		The rook for whom the moves are being removed from
+	 * @return
+	 * 		A list of all possible moves the rook can make without the 
+	 * 		impossible jumps included in possibleMoves
+	 */
+	
 	private List<int[]> removeJumpsRook(List<int[]> possibleMoves,
 			int[] currentPos, Piece piece) {
 		// System.out.print("this is the piece" + " " + piece);
@@ -797,6 +837,14 @@ public class Board {
 
 	}
 
+	/*
+	 * Can whoever added this function please fix it, the activePieces input 
+	 * is immediately overwritten by a function (making it redundant), and 
+	 * reading through it the value that is returned is changed each time the
+	 * loop goes through - should it be returning a list of booleans?
+	 * 
+	 * This means that stalemate doesn't work either as it implements this.
+	 */
 	public boolean checkMoves(List<Piece> activePieces) {
 		boolean canMove = true;
 		activePieces = findActivePieces();
@@ -811,6 +859,9 @@ public class Board {
 		return canMove;
 	}
 	
+	/**
+	 * Initialises all pieces on the board
+	 */
 	private void initialisePieces() {
 		// Initialise white pieces
 		whitePawn1 = new Pawn(false, 1);
@@ -849,6 +900,9 @@ public class Board {
 		blackRook2 = new Rook(true, 2);
 	}
 	
+	/**
+	 * Adds all pieces to their starting positions on the board
+	 */
 	public void addPieces() {
 		// Add white pieces to row 1
 		FixedSizeList<Piece> row = Board_State.get(0);
@@ -896,7 +950,7 @@ public class Board {
 	}
 
 	/**
-	 * Basic test that moves pieces for me to compare to actual board
+	 * Basic test that moves pieces for to compare to actual board
 	 */
 	private void micksTest() {
 		int[] a = {2,2};
