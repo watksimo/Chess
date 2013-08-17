@@ -118,7 +118,7 @@ public class Board {
 		boolean staleMate = false;
 		// check that the king isn't in check, then check all the pieces to see
 		// if they can move anywhere, if they can't then it's a stalemate
-		if (!checkForCheck(Team) && !checkMoves(findActivePieces()).contains(true)) {
+		if (!checkForCheck(Team) && !checkMoves().contains(true)) {
 			staleMate = true;
 		}
 		return staleMate;
@@ -838,13 +838,14 @@ public class Board {
 
 	}
 
-	/*
-	 * Fixed
-	 * activePieces should only ever be parsed in as findActivePieces()
+	/**
+	 * Checks all active pieces on the board to see whether any pieces can
+	 * move and returns a list of boolean values
 	 */
-	public List<Boolean> checkMoves(List<Piece> activePieces) {
-		
+	public List<Boolean> checkMoves() {
+		List<Piece> activePieces = findActivePieces();
 		List<Boolean> canMove = new ArrayList<Boolean>();
+		
 		for (int i = 0; i < activePieces.size(); i++) {
 			if (allowedMoves(activePieces.get(i)).isEmpty()) {
 				canMove.add(false);
