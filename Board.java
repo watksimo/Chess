@@ -320,6 +320,7 @@ public class Board {
 		int[] oldPos = findPiece(piece);
 		int x = newPosition[0];
 		int y = newPosition[1];
+		boolean kingCastleSwap = false;
 
 		List<int[]> allowedMoves = allowedMoves(piece);
 
@@ -350,6 +351,8 @@ public class Board {
 						//Move Rook to new position
 						Board_State.get(findPiece(blackRook1)[0]).add(findPiece(blackRook1)[1], nullPiece);
 						Board_State.get(castleSwapPos[0]).add(castleSwapPos[1], blackRook1);
+						allowed = true;
+						kingCastleSwap = true;
 					}
 				}
 				//Allow white teams move
@@ -359,13 +362,15 @@ public class Board {
 					int[] castleSwapPos = {0,2};
 					//Check they attempted the swap
 					if((piece.getClass() == whiteKing.getClass()) && 
-							(newPosition == kingSwapPos)) {
+							(newPosition[0] == kingSwapPos[0]) && (newPosition[1] == kingSwapPos[1])) {
 						//Move King to new position
 						Board_State.get(oldPos[0]).add(oldPos[1], nullPiece);
 						Board_State.get(x).add(y, piece);
 						//Move Rook to new position
-						Board_State.get(findPiece(blackRook1)[0]).add(findPiece(blackRook1)[1], nullPiece);
-						Board_State.get(castleSwapPos[0]).add(castleSwapPos[1], blackRook1);
+						Board_State.get(findPiece(whiteRook1)[0]).add(findPiece(whiteRook1)[1], nullPiece);
+						Board_State.get(castleSwapPos[0]).add(castleSwapPos[1], whiteRook1);
+						allowed = true;
+						kingCastleSwap = true;
 					}
 					
 				}
@@ -382,7 +387,7 @@ public class Board {
 		 * deactivate the piece, add it to the graveyard and move new piece to
 		 * that square
 		 */
-		if (occupiedSpace(newPosition)) {
+		if (occupiedSpace(newPosition) && !kingCastleSwap) {
 			// Remove enemy piece on the newPosition
 			Piece onSquare = Board_State.get(x).get(y);
 			onSquare.deActivate();
