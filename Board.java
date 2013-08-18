@@ -331,6 +331,46 @@ public class Board {
 				allowed = true;
 			}
 		}
+		
+		//If the piece is a king or a rook
+		if((piece.getClass() == blackKing.getClass()) || (piece.getClass() == 
+				blackRook1.getClass())) {
+			// Check if the kingCastle swap can be performed, if so allow move
+			if(kingCastleSwap(piece)) {
+				//Allow black teams move
+				if(piece.getTeam()) {
+					int[] kingSwapPos = {7,1};
+					int[] castleSwapPos = {7,2};
+					//Check they attempted the swap
+					if((piece.getClass() == blackKing.getClass()) && 
+							(newPosition == kingSwapPos)) {
+						//Move King to new position
+						Board_State.get(oldPos[0]).add(oldPos[1], nullPiece);
+						Board_State.get(x).add(y, piece);
+						//Move Rook to new position
+						Board_State.get(findPiece(blackRook1)[0]).add(findPiece(blackRook1)[1], nullPiece);
+						Board_State.get(castleSwapPos[0]).add(castleSwapPos[1], blackRook1);
+					}
+				}
+				//Allow white teams move
+				if(!piece.getTeam()) {
+					//Check they attempted the swap
+					int[] kingSwapPos = {0,1};
+					int[] castleSwapPos = {0,2};
+					//Check they attempted the swap
+					if((piece.getClass() == whiteKing.getClass()) && 
+							(newPosition == kingSwapPos)) {
+						//Move King to new position
+						Board_State.get(oldPos[0]).add(oldPos[1], nullPiece);
+						Board_State.get(x).add(y, piece);
+						//Move Rook to new position
+						Board_State.get(findPiece(blackRook1)[0]).add(findPiece(blackRook1)[1], nullPiece);
+						Board_State.get(castleSwapPos[0]).add(castleSwapPos[1], blackRook1);
+					}
+					
+				}
+			}
+		}
 
 		if (!allowed) {
 			System.err.println("not allowable move for " + piece + ":" + newPosition[0] + ", " + newPosition[1]);
